@@ -31,14 +31,25 @@ class StaticInteract(object):
     
     template = """
     <script type="text/javascript">
+      var mergeNodes = function(a, b) {{
+        return [].slice.call(a).concat([].slice.call(b));
+      }}; // http://stackoverflow.com/questions/914783/javascript-nodelist/17262552#17262552
       function interactUpdate(div){{
          var outputs = div.getElementsByTagName("div");
-         var controls = div.getElementsByTagName("input");
+         //var controls = div.getElementsByTagName("input");
+         var controls = mergeNodes(div.getElementsByTagName("input"), div.getElementsByTagName("select"));
+         function nameCompare(a,b) {{
+            return a.getAttribute("name").localeCompare(b.getAttribute("name"));
+         }}
+         controls.sort(nameCompare);
 
          var value = "";
          for(i=0; i<controls.length; i++){{
            if((controls[i].type == "range") || controls[i].checked){{
              value = value + controls[i].getAttribute("name") + controls[i].value;
+           }}
+           if(controls[i].type == "select-one"){{
+             value = value + controls[i].getAttribute("name") + controls[i][controls[i].selectedIndex].value;
            }}
          }}
 
@@ -89,14 +100,16 @@ class StaticInteract(object):
         names = [name for name in self.widgets]
         values = [widget.values() for widget in self.widgets.values()]
         defaults = tuple([widget.default for widget in self.widgets.values()])
-        
+
+        #Now reorder alphabetically by names so divnames match javascript
+        names,values,defaults = zip(*sorted(zip(names,values,defaults)))
+                    
         results = [self.function(**dict(zip(names, vals)))
                    for vals in itertools.product(*values)]
-                   
+
         divnames = [''.join(['{0}{1}'.format(n, self._get_strrep(v))
                              for n, v in zip(names, vals)])
                     for vals in itertools.product(*values)]
-                    
         display = [vals == defaults for vals in itertools.product(*values)]
     
         tmplt = self.subdiv_template
@@ -106,10 +119,11 @@ class StaticInteract(object):
                        for divname, result, disp in zip(divnames,
                                                         results,
                                                         display))
+    
                        
     def _widget_html(self):
         return "\n<br>\n".join([widget.html()
-                                for name, widget in self.widgets.iteritems()])
+                                for name, widget in sorted(self.widgets.iteritems())])
         
     def html(self):
         return self.template.format(outputs=self._output_html(),
