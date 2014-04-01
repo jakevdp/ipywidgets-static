@@ -31,7 +31,7 @@ class StaticWidget(object):
 
 class RangeWidget(StaticWidget):
     """Range (slider) widget"""
-    slider_html = ('<input type="range" name="{name}" '
+    slider_html = ('<b>{name}:</b> <input type="range" name="{name}" '
                    'min="{range[0]}" max="{range[1]}" step="{range[2]}" '
                    'value="{default}" style="{style}" '
                    'onchange="interactUpdate(this.parentNode);">')
@@ -64,8 +64,53 @@ class RangeWidget(StaticWidget):
                                           output,
                                           self.datarange[1])
         return output
-    
-    
+
+class DropDownWidget(StaticWidget):
+    select_html = ('<b>{name}:</b> <select name="{name}" '
+                      'onchange="interactUpdate(this.parentNode);"> '
+                      '{options}'
+                      '</select>'
+        )
+    option_html = ('<option value="{value}" '
+                      '{selected}>{label}</option>')
+    def __init__(self, values, name=None,
+                 labels=None, default=None, divclass=None,
+                 delimiter="      "
+                 ):
+        StaticWidget.__init__(self, name, divclass)
+        self._values = values
+        self.delimiter = delimiter
+        if labels is None:
+            labels = map(str, values)
+        elif len(labels) != len(values):
+            raise ValueError("length of labels must match length of values")
+        self.labels = labels
+
+        if default is None:
+            self.default = values[0]
+        elif default in values:
+            self.default = default
+        else:
+            raise ValueError("if specified, default must be in values")
+
+    def _single_option(self,label,value):
+        if value == self.default:
+            selected = ' selected '
+        else:
+            selected = ''
+        return self.option_html.format(label=label,
+                                       value=value,
+                                       selected=selected)
+    def values(self):
+        return self._values
+    def html(self):
+        options = self.delimiter.join(
+            [self._single_option(label,value)
+             for (label,value) in zip(self.labels, self._values)]
+        )
+        return self.select_html.format(name=self.name,
+                                       options=options)
+
 class RadioWidget(StaticWidget):
     radio_html = ('<input type="radio" name="{name}" value="{value}" '
                   '{checked} '
@@ -103,7 +148,8 @@ class RadioWidget(StaticWidget):
         return self._values
             
     def html(self):
-        return self.delimiter.join(
+        preface = '<b>{name}:</b> '.format(name=self.name)
+        return  preface + self.delimiter.join(
             ["{0}: {1}".format(label, self._single_radio(value))
              for (label, value) in zip(self.labels, self._values)])
     
