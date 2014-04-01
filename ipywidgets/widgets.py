@@ -31,7 +31,7 @@ class StaticWidget(object):
 
 class RangeWidget(StaticWidget):
     """Range (slider) widget"""
-    slider_html = ('<input type="range" name="{name}" '
+    slider_html = ('<b>{name}:</b> <input type="range" name="{name}" '
                    'min="{range[0]}" max="{range[1]}" step="{range[2]}" '
                    'value="{default}" style="{style}" '
                    'onchange="interactUpdate(this.parentNode);">')
@@ -66,7 +66,7 @@ class RangeWidget(StaticWidget):
         return output
 
 class DropDownWidget(StaticWidget):
-    select_html = ('<select name="{name}" '
+    select_html = ('<b>{name}:</b> <select name="{name}" '
                       'onchange="interactUpdate(this.parentNode);"> '
                       '{options}'
                       '</select>'
@@ -148,7 +148,8 @@ class RadioWidget(StaticWidget):
         return self._values
             
     def html(self):
-        return self.delimiter.join(
+        preface = '<b>{name}:</b> '.format(name=self.name)
+        return  preface + self.delimiter.join(
             ["{0}: {1}".format(label, self._single_radio(value))
              for (label, value) in zip(self.labels, self._values)])
     
