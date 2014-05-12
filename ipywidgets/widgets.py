@@ -34,6 +34,7 @@ class RangeWidget(StaticWidget):
     slider_html = ('<b>{name}:</b> <input type="range" name="{name}" '
                    'min="{range[0]}" max="{range[1]}" step="{range[2]}" '
                    'value="{default}" style="{style}" '
+                   'oninput="interactUpdate(this.parentNode);" '
                    'onchange="interactUpdate(this.parentNode);">')
     def __init__(self, min, max, step=1, name=None,
                  default=None, width=350, divclass=None,
