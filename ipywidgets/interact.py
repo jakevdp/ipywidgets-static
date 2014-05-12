@@ -8,13 +8,6 @@ def _get_html(obj):
     """Get the HTML representation of an object"""
     # TODO: use displaypub to make this more general
     ip = get_ipython()
-    rep = ip.display_formatter.formatters['text/html'](obj)
-    
-    if rep is not None:
-        return rep
-    elif hasattr(obj, '_repr_html_'):
-        return obj._repr_html_()
-
     png_rep = ip.display_formatter.formatters['image/png'](obj)
 
     if png_rep is not None:
@@ -24,6 +17,13 @@ def _get_html(obj):
                 'base64,{0}">'.format(png_rep.encode('base64')))
     else:
         return "<p> {0} </p>".format(str(obj))
+
+    rep = ip.display_formatter.formatters['text/html'](obj)
+
+    if rep is not None:
+        return rep
+    elif hasattr(obj, '_repr_html_'):
+        return obj._repr_html_()
 
 
 class StaticInteract(object):
