@@ -1,6 +1,7 @@
 from collections import OrderedDict
 import itertools
 import matplotlib.pyplot as plt
+import matplotlib.figure
 from IPython import get_ipython
 
 
@@ -12,7 +13,7 @@ def _get_html(obj):
     
     if rep is not None:
         return rep
-    elif hasattr(obj, '_repr_html_'):
+    elif hasattr(obj, '_repr_html_') and not ((type(obj) == matplotlib.figure.Figure) and (obj._repr_html_() is None)):
         return obj._repr_html_()
 
     png_rep = ip.display_formatter.formatters['image/png'](obj)
