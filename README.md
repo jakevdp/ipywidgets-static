@@ -1,8 +1,8 @@
-ipywidgets
-==========
+ipywidgets (unsupported)
+========================
 Static Widgets for IPython Notebooks
 
-**Note that this package is no longer supported; instead, use IPython's built-in interactive tools**
+**Note that this package is no longer supported; instead, use IPython's built-in interactive tools: https://github.com/ipython/ipywidgets**
 
 This is currently an experimental repository containing code which enables
 static widgets to be used in the IPython notebook.
