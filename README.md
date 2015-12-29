@@ -1,6 +1,5 @@
-ipywidgets (unsupported)
-========================
 Static Widgets for IPython Notebooks
+====================================
 
 **Note that this package is no longer supported; instead, use IPython's built-in interactive tools: https://github.com/ipython/ipywidgets**
 
