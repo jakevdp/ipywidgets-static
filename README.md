@@ -13,6 +13,8 @@ For the previous reasons, I started working on this project to add some new feat
 
 __NOTE__: Note that the notebook needs to be trusted for this library to work, since untrusted notebooks do not run embedded JavaScript code.
 
+---
+
 **Note that this package is no longer supported; instead, use IPython's built-in interactive tools: https://github.com/ipython/ipywidgets**
 
 This is currently an experimental repository containing code which enables
