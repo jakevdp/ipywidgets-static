@@ -41,6 +41,7 @@ class RangeWidget(StaticWidget):
                    'value="{default}" style="{style}" '
                    'oninput="interactUpdate(this);" '
                    'onchange="interactUpdate(this);">')
+
     def __init__(self, min, max, step=1, name=None,
                  default=None, width=350, divclass=None,
                  show_range=False, description=None):
@@ -72,14 +73,16 @@ class RangeWidget(StaticWidget):
                                           self.datarange[1])
         return output
 
+
 class DropDownWidget(StaticWidget):
     select_html = ('<b>{description}</b>: <select name="{name}" '
-                      'onchange="interactUpdate(this);"> '
-                      '{options}'
-                      '</select>'
-        )
+                   'onchange="interactUpdate(this);"> '
+                   '{options}'
+                   '</select>'
+                   )
     option_html = ('<option value="{value}" '
-                      '{selected}>{label}</option>')
+                   '{selected}>{label}</option>')
+
     def __init__(self, values, name=None,
                  labels=None, default=None, divclass=None,
                  delimiter="      ", description=None
@@ -100,7 +103,7 @@ class DropDownWidget(StaticWidget):
         else:
             raise ValueError("if specified, default must be in values")
 
-    def _single_option(self,label,value):
+    def _single_option(self, label, value):
         if value == self.default:
             selected = ' selected '
         else:
@@ -108,15 +111,18 @@ class DropDownWidget(StaticWidget):
         return self.option_html.format(label=label,
                                        value=value,
                                        selected=selected)
+
     def values(self):
         return self._values
+
     def html(self):
         options = self.delimiter.join(
-            [self._single_option(label,value)
-             for (label,value) in zip(self.labels, self._values)]
+            [self._single_option(label, value)
+             for (label, value) in zip(self.labels, self._values)]
         )
         return self.select_html.format(name=self.name, description=self.description,
                                        options=options)
+
 
 class RadioWidget(StaticWidget):
     radio_html = ('<input type="radio" name="{name}" value="{value}" '
@@ -156,6 +162,6 @@ class RadioWidget(StaticWidget):
 
     def html(self):
         preface = '<b>{name}</b>: '.format(name=self.name)
-        return  preface + self.delimiter.join(
+        return preface + self.delimiter.join(
             ["{0}: {1}".format(label, self._single_radio(value))
              for (label, value) in zip(self.labels, self._values)])
