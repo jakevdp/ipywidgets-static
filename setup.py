@@ -1,13 +1,15 @@
 from distutils.core import setup
 
-DESCRIPTION = "IPython Static Widgets"
-LONG_DESCRIPTION = DESCRIPTION
-NAME = "ipywidgets"
-AUTHOR = "Jake VanderPlas"
-AUTHOR_EMAIL = "jakevdp@cs.washington.edu"
-MAINTAINER = "Jake VanderPlas"
-MAINTAINER_EMAIL = "jakevdp@cs.washington.edu"
-DOWNLOAD_URL = 'http://github.com/jakevdp/ipywidgets'
+DESCRIPTION = "Jupyter static interactive figures"
+LONG_DESCRIPTION = ("Generate interactive figures in Jupyter which solely depend on "
+                    "JavaScript and, hence, can be exported to static HTML webpages. "
+                    "Forked from https://github.com/jakevdp/ipywidgets-static")
+NAME = "staticinteract"
+AUTHOR = "Semidan Robaina, Jake VanderPlas"
+AUTHOR_EMAIL = "srobaina@ull.edu.es"
+MAINTAINER = "Semidan Robaina"
+MAINTAINER_EMAIL = "srobaina@gmail.com"
+DOWNLOAD_URL = 'http://github.com/robaina/staticInteract'
 LICENSE = 'BSD'
 
 VERSION = '0.0.1'
@@ -23,5 +25,5 @@ setup(name=NAME,
       url=DOWNLOAD_URL,
       download_url=DOWNLOAD_URL,
       license=LICENSE,
-      packages=['ipywidgets'],
-     )
+      packages=['ipywidgets']
+      )

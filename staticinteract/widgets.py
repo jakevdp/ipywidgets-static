@@ -56,7 +56,7 @@ class RangeWidget(StaticWidget):
 
     def values(self):
         min, max, step = self.datarange
-        return np.arange(min, max + step, step)
+        return np.round(np.arange(min, max + step, step), 4)
 
     def html(self):
         style = ""

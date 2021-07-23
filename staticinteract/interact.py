@@ -83,8 +83,8 @@ def _get_html(obj, embedded_figs=False,
                             + base64.b64encode(png_rep).decode() + '"/>')
             else:
                 fig_path = img_dir + '/' + name + '.png'
-                obj.savefig(fig_path)
-                img_elem = ('<img src="' + fig_path + '"/>')
+                obj.savefig(fig_path, bbox_inches='tight')
+                img_elem = ('<img src="' + fig_path + '" style="max-width:100%; height:auto"/>')
 
             plt.close(obj)  # keep from displaying twice
             return img_elem
@@ -126,6 +126,7 @@ class StaticInteract(object):
       {content}
     </div>
     """
+    # Why use name instead of id? the problem I have it that it does not change the display mode from none to block...
 
     @staticmethod
     def _get_strrep(val):
