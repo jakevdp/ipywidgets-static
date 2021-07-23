@@ -9,7 +9,8 @@ import os
 import warnings
 
 plt.rcParams.update({'figure.max_open_warning': 0}) 
-# TODO: suppresing warning is a temporary fix. We're closing figure in line 93. Don't understand why warning happening.
+# TODO: suppresing warning is a temporary fix. 
+# We're closing figure in line 93. Don't understand why warning happening.
 
 if sys.version_info.major > 2:
     dict_items = 'items'
