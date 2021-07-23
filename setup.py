@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 DESCRIPTION = "Jupyter static interactive figures"
 LONG_DESCRIPTION = ("Generate interactive figures in Jupyter which solely depend on "
@@ -25,5 +25,6 @@ setup(name=NAME,
       url=DOWNLOAD_URL,
       download_url=DOWNLOAD_URL,
       license=LICENSE,
-      packages=['staticinteract']
+      packages=['staticinteract'],
+      install_requires=['matplotlib', 'numpy', 'ipython']
       )

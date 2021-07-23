@@ -1,0 +1,2 @@
+prune example_imgs
+exclude example.ipynb custom.css index.html gitignore TODO.md
