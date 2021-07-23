@@ -1,6 +1,6 @@
 # Static Interactive Figures for Jupyter Notebooks
 
-
+## [See HTML example here](https://semidanrobaina.com/staticInteract/)
 
 I really liked the functionality provided by the, now abandoned, project [ipywidgets-static](https://github.com/jakevdp/ipywidgets-static). It's a pity that it was abandoned. Contrary to what it is stated in the original repo, iPython's ipywidgets do not provide the same functionality of ipywidgets-static (as far as I know, that is). Specifically, iPython's ipywigets, while very nice and useful, only work when the Jupyter kernel is active since they call your defined function everytime one interacts with the widget.
 
