@@ -12,19 +12,3 @@ For the previous reasons, I started working on this project to add some new feat
 3. In the previous version, StaticInteract would write the same JavaScript code to the notebook cell where it was called. I find this repetitive and unnecessary, moreover prone to errors due to declaring more than once the same JavaScript variables when multiple interactive plots are done in a single notebook. To solve this issue, this part of JavaScript code is now embedded in the notebook only at the beginning, when the module is imported.
 
 __NOTE__: Note that the notebook needs to be trusted for this library to work, since untrusted notebooks do not run embedded JavaScript code.
-
----
-
-**Note that this package is no longer supported; instead, use IPython's built-in interactive tools: https://github.com/ipython/ipywidgets**
-
-This is currently an experimental repository containing code which enables
-static widgets to be used in the IPython notebook.
-
-Use at your own risk: the interface will likely change in the near future...
-
-Demonstrations
---------------
-You can see this in action in a few places:
-
-- My [blog post](http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/) about starting this repository
-- The [example notebook](http://nbviewer.ipython.org/github/jakevdp/ipywidgets/blob/master/example.ipynb) in this repository
