@@ -8,6 +8,9 @@ import sys
 import os
 import warnings
 
+plt.rcParams.update({'figure.max_open_warning': 0}) 
+# TODO: suppresing warning is a temporary fix. We're closing figure in line 93. Don't understand why warning happening.
+
 if sys.version_info.major > 2:
     dict_items = 'items'
 else:
@@ -70,7 +73,6 @@ def _get_html(obj, embedded_figs=False,
     I modified this function to save pyplot fig to directory instead.
     I use the divname as figure name. Actually, let's make this optional.
     """
-    # TODO: use displaypub to make this more general
     if not embedded_figs and not os.path.exists(img_dir):
         os.makedirs(img_dir)
     ip = get_ipython()
@@ -86,7 +88,7 @@ def _get_html(obj, embedded_figs=False,
                 obj.savefig(fig_path, bbox_inches='tight')
                 img_elem = ('<img src="' + fig_path + '" style="max-width:100%; height:auto"/>')
 
-            plt.close(obj)  # keep from displaying twice
+            plt.close(obj) 
             return img_elem
     else:
         return "<p> {0} </p>".format(str(obj))
