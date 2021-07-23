@@ -25,5 +25,5 @@ setup(name=NAME,
       url=DOWNLOAD_URL,
       download_url=DOWNLOAD_URL,
       license=LICENSE,
-      packages=['ipywidgets']
+      packages=['staticinteract']
       )
