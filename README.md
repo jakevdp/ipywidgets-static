@@ -2,6 +2,12 @@
 
 ## [See HTML example here](https://semidanrobaina.com/staticInteract/)
 
+## Install:
+
+```
+pip install staticinteract
+```
+
 I really liked the functionality provided by the, now abandoned, project [ipywidgets-static](https://github.com/jakevdp/ipywidgets-static). It's a pity that it was abandoned. Contrary to what it is stated in the original repo, iPython's ipywidgets do not provide the same functionality of ipywidgets-static (as far as I know, that is). Specifically, iPython's ipywigets, while very nice and useful, only work when the Jupyter kernel is active since they call your defined function everytime one interacts with the widget.
 
 Hence, interactive figures generated this way do not work in situations where there is no access to python, such as when the notebook is seen as a plain webpage. While generally this is not a problem, there are certain occasions where being able to manipulate interactive figures without python calculating stuff is very useful. For instance, when the calculations needed to generate the images are too involved for them to be run on the fly, or, precisely when one wants to share the notebook as a plain webpage, inside a blog or something like that.
