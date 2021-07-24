@@ -64,8 +64,12 @@ static_widget_script = r"""
       }}
     </script>
     """
-display(HTML(static_widget_script))
 
+def initializeInteract():
+    """
+    Embed JavaScript functions in NoteBook
+    """
+    display(HTML(static_widget_script))
 
 def _get_html(obj, embedded_figs=False,
               name=None, img_dir=None):
