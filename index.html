@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>example</title>
+<title>example_nb</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13104,7 +13104,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h1><p>Here is a basic example (modified from the forked repository) to show the kind of interactive figure you can obtain. As you can see, it looks very similar to the regular ipywidgets version. However, the key difference is that this interactive figure is not running any python code behind the hood. When you interact with it, JavaScript code is run to select the appropriate, previously generated, image from the <code>example_imgs</code> directory. This makes possible to display the interactive image in a static webpage. Such as the one created by exporting <a href="https://semidanrobaina.com/staticInteract/">this notebook to html</a>.</p>
 <p><strong>IMPORTANT NOTE:</strong>
-JavaScript functions are added to the Notebook on module import. Due to Python not reimporting already imported modules... if staticinteract is reimported, JavaScript functions will be removed from the Notebook and, consequently, the interactive plot will break. Thus, the module should be imported only once within each kernel session.</p>
+StaticInteract must be initialize after importing the module, during initialization JavaScript code required to make plots interactive is embedded in the notebook. Initialization is performed by the function <code>initializeInteract</code>.</p>
 
 </div>
 </div>
@@ -13117,7 +13117,8 @@ JavaScript functions are added to the Notebook on module import. Due to Python n
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">staticinteract</span> <span class="kn">import</span> <span class="n">StaticInteract</span><span class="p">,</span> <span class="n">RangeWidget</span><span class="p">,</span> <span class="n">RadioWidget</span>
+<span class="kn">from</span> <span class="nn">staticinteract</span> <span class="kn">import</span> <span class="n">StaticInteract</span><span class="p">,</span> <span class="n">RangeWidget</span><span class="p">,</span> <span class="n">RadioWidget</span><span class="p">,</span> <span class="n">initializeInteract</span>
+<span class="n">initializeInteract</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13189,6 +13190,14 @@ JavaScript functions are added to the Notebook on module import. Due to Python n
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Storing-figures">Storing figures<a class="anchor-link" href="#Storing-figures">&#182;</a></h2><p>Figures can either be directly embedded in the notebook (this is how it was done in the original repository from which this one is forked) or stored in a directory. This behavior is controlled with parameter _embedde<em>figs</em> of <em>StaticInteract</em>.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
@@ -13208,7 +13217,7 @@ JavaScript functions are added to the Notebook on module import. Due to Python n
 <span class="n">i_fig</span> <span class="o">=</span> <span class="n">StaticInteract</span><span class="p">(</span><span class="n">plot_fun</span><span class="p">,</span>
                        <span class="n">amplitude</span><span class="o">=</span><span class="n">RangeWidget</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
                        <span class="n">color</span><span class="o">=</span><span class="n">RadioWidget</span><span class="p">([</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]),</span>
-                       <span class="n">interact_name</span><span class="o">=</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+                       <span class="n">interact_name</span><span class="o">=</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="n">embedded_figs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">i_fig</span>
 </pre></div>
 
