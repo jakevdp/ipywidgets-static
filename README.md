@@ -1,4 +1,6 @@
 # Static Interactive Figures for Jupyter Notebooks
+
+Generate interactive figures in Jupyter which solely depend on JavaScript and can be exported to static HTML webpages.
 Forked from https://github.com/jakevdp/ipywidgets-static
 
 ## [See HTML example here](https://semidanrobaina.com/staticInteract/)
