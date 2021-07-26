@@ -1,4 +1,5 @@
 # Static Interactive Figures for Jupyter Notebooks
+Forked from https://github.com/jakevdp/ipywidgets-static
 
 ## [See HTML example here](https://semidanrobaina.com/staticInteract/)
 
