@@ -15,8 +15,7 @@ MAINTAINER = "Semidan Robaina"
 MAINTAINER_EMAIL = "srobaina@gmail.com"
 DOWNLOAD_URL = 'http://github.com/robaina/staticInteract'
 LICENSE = 'BSD'
-
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 
 setup(name=NAME,
       version=VERSION,
