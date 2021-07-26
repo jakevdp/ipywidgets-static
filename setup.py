@@ -1,9 +1,13 @@
 from setuptools import setup
+from os import path
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 DESCRIPTION = "Jupyter static interactive figures"
-LONG_DESCRIPTION = ("Generate interactive figures in Jupyter which solely depend on "
-                    "JavaScript and, hence, can be exported to static HTML webpages. "
-                    "Forked from https://github.com/jakevdp/ipywidgets-static")
+LONG_DESCRIPTION=long_description,
+LONG_DESCRIPTION_CONTENT_TYPE='text/markdown'
 NAME = "staticinteract"
 AUTHOR = "Semidan Robaina, Jake VanderPlas"
 AUTHOR_EMAIL = "srobaina@ull.edu.es"
